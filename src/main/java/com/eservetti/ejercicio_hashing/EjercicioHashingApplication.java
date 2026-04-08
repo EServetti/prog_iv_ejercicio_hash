@@ -15,9 +15,9 @@ public class EjercicioHashingApplication {
         String hashedPassword = encoder.encode(password);
         long end = System.currentTimeMillis();
 
-        System.out.println("Hash Password: " + hashedPassword);
-        System.out.println("Hash Strength: " + strength);
-        System.out.println("Time: " + (end - start) + " ms");
+        System.out.println("Contraseña hasheada por Bcrypt: " + hashedPassword);
+        System.out.println("Hash Strength Bcrypt: " + strength);
+        System.out.println("Tiempo en ms: " + (end - start));
     }
 
 	public static void main(String[] args) {
@@ -30,16 +30,16 @@ public class EjercicioHashingApplication {
         String hash1 = DigestUtils.md5Hex(rawPassword);
         String hash2 = DigestUtils.md5Hex(rawPassword);
 
-        System.out.println("Hash1: " + hash1);
-        System.out.println("Hash2: " + hash2);
-        System.out.println("Longitud del hash: " + hashLen);
+        System.out.println("Hash por MD5 1: " + hash1);
+        System.out.println("Hash por MD5 2: " + hash2);
+        System.out.println("Longitud del hash MD5: " + hashLen);
         // Hashing por BCrypt
         testHashBCrypt(rawPassword, 4);
         testHashBCrypt(rawPassword, 10);
         testHashBCrypt(rawPassword, 15);
         // Hashing por Argon
         Argon2PasswordEncoder argonEncoder = new Argon2PasswordEncoder(16, hashLen,1, 65536,3);
-        System.out.println("Argon hash: " + argonEncoder.encode(rawPassword));
+        System.out.println("Hash Argon: " + argonEncoder.encode(rawPassword));
 	}
 
 }
